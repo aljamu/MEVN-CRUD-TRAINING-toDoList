@@ -1,21 +1,48 @@
 <template >
     <div>
-        <h1>{{test.name}}</h1>
+        <div class="card-item" v-for="item in state.todos" :key="item.author">
+            <h2>
+                {{ item.author }}
+            </h2>
+            <p>
+                {{ item.todo}}
+            </p>
+        </div>
     </div>
 </template>
 <script>
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 
 export default {
     setup() {
-        const test = reactive({
-            name:"Sideshow Bob"
+        const state = reactive({
+            todos: {}
         })
 
-        return { test }
+        function getAll() {
+            fetch('http://localhost:3000/todos')
+            .then(res => res.json())
+            .then(data => {
+                state.todos = data
+                //debugger
+            })
+        }
+
+        onMounted(()=>{
+            getAll()
+        })
+        return { state, getAll }
     }
 }
 </script>
 <style scoped>
-    
+    .card-item{
+        border: 2px solid darkolivegreen;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px; 
+        background-color: #42b983;
+        color: white;
+    }
 </style>

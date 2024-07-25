@@ -4,7 +4,7 @@
     <router-link to="/todos">To Do</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <router-view/>
+ <routerView />
 </template>
 
 <style lang="scss">
