@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
     res.send("Hello World")
 })
 
+//const todosRoute = require('./routes/Todos')
+//app.use('/todos', todosRoute)
+
 //start server
 app.listen(3000, ()=>{
     console.log("Server listening at Port 3000")
