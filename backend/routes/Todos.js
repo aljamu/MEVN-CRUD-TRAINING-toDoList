@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Todo = require('../models/')
+const Todo = require('../models/Todos')
 
-const mongoose = require('mongoose');
-const TodosSchema = new mongoose.Schema({
-    todo: String,
-    author: String,
-})
+//Get All Todo route
 
-module.exports = mongoose.model('todo', TodosSchema)
+router.get("/", async (req, res) => {
+    const todos = await Todo.find();
+    res.json(todos)
+});
+
+module.exports = router;
