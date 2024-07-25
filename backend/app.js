@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
 })
 
 //Database
-const MongoDB_URI = "mongodb://localhost:27017/"
+const MongoDB_URI = "mongodb://localhost:27017/todos"
 mongoose.connect(MongoDB_URI).then(() => {
     console.log("Connected to Mongodb Database")
 }).catch(err=> console.log(err))
@@ -30,8 +30,8 @@ app.get("/", (req, res) => {
     res.send("Hello World")
 })
 
-//const todosRoute = require('./routes/Todos')
-//app.use('/todos', todosRoute)
+const todosRoute = require('./routes/Todos')
+app.use('/todos', todosRoute)
 
 //start server
 app.listen(3000, ()=>{
