@@ -11,11 +11,12 @@
     </div>
 </template>
 <script>
-import { reactive, onMounted } from 'vue';
+import { onMounted } from 'vue';
+import todocrud from '../modules/todocrud'
 
 export default {
     setup() {
-        const state = reactive({
+/*        const state = reactive({
             todos: {}
         })
 
@@ -26,12 +27,14 @@ export default {
                 state.todos = data
                 //debugger
             })
-        }
+        }*/ //"Outsourced" into composable modules/todocrud.js
+
+        const { state, getAllTodos } = todocrud()
 
         onMounted(()=>{
-            getAll()
+            getAllTodos()
         })
-        return { state, getAll }
+        return { state, getAllTodos }
     }
 }
 </script>

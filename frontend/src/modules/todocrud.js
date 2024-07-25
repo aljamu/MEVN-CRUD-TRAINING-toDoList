@@ -10,12 +10,19 @@ const getTodos = () => {
             await fetch('http://localhost:3000/todos')
             .then(res => res.json())
             .then(data => {
-                state.todos = data
+                state.value.todos = data
                 //debugger
             })
         }
-        catch {
-
+        catch(error) {
+            console.log(error)
         }
     }
+
+    return { 
+        state,
+        getAllTodos
+    }
 }
+
+export default getTodos
