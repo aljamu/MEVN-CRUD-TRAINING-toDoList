@@ -34,11 +34,7 @@ router.delete("/delete/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
     const UpdateTodoById = await Todo.updateOne(
         {_id : req.params.id},
-        //{ $set: req.body }
-        {
-            todo: "Skating",
-            author: "Bart"
-        }
+        { $set: req.body }
     )
     res.json(UpdateTodoById)
 });

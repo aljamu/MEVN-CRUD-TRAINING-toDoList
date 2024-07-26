@@ -7,17 +7,17 @@
         <input type="text" placeholder="New Todo" v-model="state.newTodoItem">
         <br />
         <button @click="newTodo()">Add Todo</button>
-        <span>Debug & Test: {{ state.newAuthor }} </span>
         <hr>
-        <div class="card-item" v-for="item in state.todos" :key="item.author">
-            <h2>
-                {{ item.author }}
-            </h2>
-            <p>
-                {{ item.todo }}
-            </p>
+        <div class="card-item" v-for="item in state.todos" :key="item._id">
+            <router-link :to="`/todo/${item._id}`">
+                <h2>
+                    {{ item.author }}
+                </h2>
+                <p>
+                    {{ item.todo }}
+                </p>
+            </router-link>
             <button @click="deleteTodo(item._id)">Delete</button>
-            <button @click="editTodo(item._id)">Edit</button>
         </div>
     </div>
 </template>
