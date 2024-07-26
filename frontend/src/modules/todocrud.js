@@ -2,11 +2,24 @@ import { ref } from 'vue';
 
 const getTodos = () => {
     const state = ref({
+        newAuthor: '',
+        newTodoItem: '',
         todos: {}
     })
 
     const newTodo = () => {
-        fetch('http://localhost:3000/todos/new', { method: "POST"})
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+                //"auth-token": state.token
+            },
+            body: JSON.stringify({
+                todo: state.value.newTodoItem,
+                author: state.value.newAuthor
+            })
+        }
+        fetch('http://localhost:3000/todos/new', requestOptions)
     }
 
     const deleteTodo = (_id) => {

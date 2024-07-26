@@ -1,5 +1,14 @@
 <template >
     <div>
+        <h1>All Todos</h1>
+        <hr>
+        <input type="text" placeholder="Author" v-model="state.newAuthor">
+        <br />
+        <input type="text" placeholder="New Todo" v-model="state.newTodoItem">
+        <br />
+        <button @click="newTodo()">Add Todo</button>
+        <span>Debug & Test: {{ state.newAuthor }} </span>
+        <hr>
         <div class="card-item" v-for="item in state.todos" :key="item.author">
             <h2>
                 {{ item.author }}
@@ -10,7 +19,6 @@
             <button @click="deleteTodo(item._id)">Delete</button>
             <button @click="editTodo(item._id)">Edit</button>
         </div>
-        <button @click="newTodo()">New Todo - Static</button>
     </div>
 </template>
 <script>

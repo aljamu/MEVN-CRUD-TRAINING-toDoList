@@ -11,11 +11,7 @@ router.get("/", async (req, res) => {
 //Create new Todo
 router.post("/new", async (req, res) => {
     const newTodo = new Todo(
-        // req.body //What the Vue App is sending
-        {
-            todo:"Go to Canada",
-            author: "Flanders",
-        }
+    req.body //What the Vue App is sending
     );
     const savedTodo = await newTodo.save()
     res.json(savedTodo)
