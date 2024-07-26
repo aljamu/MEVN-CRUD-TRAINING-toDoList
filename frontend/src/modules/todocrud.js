@@ -5,6 +5,25 @@ const getTodos = () => {
         todos: {}
     })
 
+    const newTodo = () => {
+        fetch('http://localhost:3000/todos/new', { method: "POST"})
+    }
+
+    const deleteTodo = (_id) => {
+        fetch('http://localhost:3000/todos/delete/' + _id, { method: "DELETE"}
+            //.then(() => { location.reload() })
+        )
+    }
+
+    const editTodo = (_id) => {
+        const requestOptions = {
+            method: "PUT"
+        }
+        fetch('http://localhost:3000/todos/update/' + _id, requestOptions)
+        .then(res => res.body)
+        .then(res => {console.log(res)})
+    }
+
     const getAllTodos = async () => {
         try {
             await fetch('http://localhost:3000/todos')
@@ -21,7 +40,10 @@ const getTodos = () => {
 
     return { 
         state,
-        getAllTodos
+        getAllTodos,
+        newTodo,
+        deleteTodo,
+        editTodo
     }
 }
 

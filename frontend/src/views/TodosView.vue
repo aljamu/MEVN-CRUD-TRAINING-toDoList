@@ -5,9 +5,12 @@
                 {{ item.author }}
             </h2>
             <p>
-                {{ item.todo}}
+                {{ item.todo }}
             </p>
+            <button @click="deleteTodo(item._id)">Delete</button>
+            <button @click="editTodo(item._id)">Edit</button>
         </div>
+        <button @click="newTodo()">New Todo - Static</button>
     </div>
 </template>
 <script>
@@ -29,12 +32,12 @@ export default {
             })
         }*/ //"Outsourced" into composable modules/todocrud.js
 
-        const { state, getAllTodos } = todocrud()
+        const { state, getAllTodos, newTodo, deleteTodo, editTodo } = todocrud()
 
         onMounted(()=>{
             getAllTodos()
         })
-        return { state, getAllTodos }
+        return { state, getAllTodos, newTodo, deleteTodo, editTodo }
     }
 }
 </script>
